@@ -7,3 +7,5 @@ export const AdapterMap = Object.freeze({
   careplus: CarePlusAdapter,
   quickcare: QuickCareAdapter,
 });
+
+export type AdapterMap = typeof AdapterMap;

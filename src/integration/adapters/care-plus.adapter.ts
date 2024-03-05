@@ -11,28 +11,30 @@ type CarePlusCustomer = {
 };
 
 type CarePlusOrder = {
+  carePlusId: string;
   carePlusProduct: string;
   carePlusQuantity: number;
   carePlusClientInfo: CarePlusCustomer;
 };
 
-export const CarePlusAdapter: IntegrationAdapter<CarePlusOrder> = {
-  fromPayload({ carePlusClientInfo, ...prefixedOrder }) {
-    const order = removeKeyPrefix(prefixedOrder, 'carePlus');
-    const customer = removeKeyPrefix(carePlusClientInfo, 'carePlusClient');
+export const CarePlusAdapter: IntegrationAdapter<CarePlusOrder, 'carePlusId'> =
+  {
+    fromPayload({ carePlusClientInfo, ...prefixedOrder }) {
+      const order = removeKeyPrefix(prefixedOrder, 'carePlus');
+      const customer = removeKeyPrefix(carePlusClientInfo, 'carePlusClient');
 
-    return {
-      ...order,
-      customer,
-    };
-  },
-  toPayload({ customer, ...order }) {
-    const prefixedOrder = addKeyPrefix(order, 'carePlus');
-    const carePlusClientInfo = addKeyPrefix(customer, 'carePlusClient');
+      return {
+        ...order,
+        customer,
+      };
+    },
+    toPayload({ customer, ...order }) {
+      const prefixedOrder = addKeyPrefix(order, 'carePlus');
+      const carePlusClientInfo = addKeyPrefix(customer, 'carePlusClient');
 
-    return {
-      ...prefixedOrder,
-      carePlusClientInfo,
-    };
-  },
-};
+      return {
+        ...prefixedOrder,
+        carePlusClientInfo,
+      };
+    },
+  };

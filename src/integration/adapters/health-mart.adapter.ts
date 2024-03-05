@@ -11,12 +11,16 @@ type HealthMartCustomer = {
 };
 
 type HealthMartOrder = {
+  healthMartId: string;
   healthMartProduct: string;
   healthMartQuantity: number;
   healthMartCustomerInfo: HealthMartCustomer;
 };
 
-export const HealthMartAdapter: IntegrationAdapter<HealthMartOrder> = {
+export const HealthMartAdapter: IntegrationAdapter<
+  HealthMartOrder,
+  'healthMartId'
+> = {
   fromPayload({ healthMartCustomerInfo, ...prefixedOrder }) {
     const order = removeKeyPrefix(prefixedOrder, 'healthMart');
     const customer = removeKeyPrefix(healthMartCustomerInfo, 'healthMartCust');
