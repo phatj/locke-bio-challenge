@@ -9,12 +9,8 @@ const CustomerDto = z.object({
   country: z.string().min(2),
 });
 
-const ProductOrderDto = z.object({
+export const OrderCreateDto = z.object({
   product: z.string(),
   quantity: z.number(),
-});
-
-export const OrderCreateDto = z.object({
-  order: ProductOrderDto,
   customer: CustomerDto,
 });
