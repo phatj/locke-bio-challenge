@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { AdapterTuple } from '~/integration/adapters/adapter-map';
 
 const CustomerDto = z.object({
   name: z.string().min(2),
@@ -10,7 +11,10 @@ const CustomerDto = z.object({
 });
 
 export const OrderCreateDto = z.object({
+  pharmacy: z.enum(AdapterTuple),
   product: z.string(),
   quantity: z.number(),
   customer: CustomerDto,
 });
+
+export type CreateOrderDto = z.infer<typeof OrderCreateDto>;

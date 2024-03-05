@@ -12,9 +12,9 @@ db.orders = new Map();
 
 // create an order
 OrderController.post('/', zValidator('json', OrderCreateDto), async (c) => {
-  const data = c.req.valid('json');
+  const { pharmacy, ...data } = c.req.valid('json');
 
-  const orderWithIntegrationId = await relayOrder('healthmart', data);
+  const orderWithIntegrationId = await relayOrder(pharmacy, data);
 
   const order = createModel<OrderModel>(orderWithIntegrationId);
   db.orders.set(order.id, order);

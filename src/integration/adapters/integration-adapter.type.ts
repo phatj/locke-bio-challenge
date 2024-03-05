@@ -6,5 +6,5 @@ export interface IntegrationAdapter<
   Id extends keyof Payload,
 > {
   toPayload: (order: Order) => Omit<Payload, Id>;
-  fromPayload: (payload: Payload) => Order;
+  fromPayload: (payload: Payload) => Order & { id: string };
 }

@@ -11,7 +11,7 @@ type QuickCareCustomer = {
 };
 
 type QuickCareOrder = {
-  quickCareId?: string;
+  quickCareId: string;
   quickCareProduct: string;
   quickCareQuantity: number;
   quickCareUserData: QuickCareCustomer;
