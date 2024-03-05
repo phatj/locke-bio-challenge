@@ -30,6 +30,6 @@
     "sourceMap": false,
     "target": "es2018"
   },
-  "include": ["src", "lib"],
+  "include": ["src", "lib", "env.d.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
