@@ -1,6 +1,10 @@
 {
   "name": "locke-bio-challenge",
   "packageManager": "pnpm@8.15.4",
+  "author": {
+    "name": "Jamal Shah",
+    "email": "jshah@fluxworkstudios.com"
+  },
   "scripts": {
     "build": "rm -rf dist/ && tsc",
     "debug": "tsx --inspect-brk src/index.ts",
