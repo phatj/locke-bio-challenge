@@ -13,7 +13,6 @@ This service is powered by Hono and validated using Zod.
 * Error handling is loose.
 * Users don't require authentication.
 * Adapters effectively run off of the same transformation assumptions (i.e., they have consistent prefixes).  An actual implementation would likely have different clients, key structures, etc.
-* Unfortunately, I've run out of time, but I would have liked to add a few unit tests for `object-prefix`.
 
 ## Requirements
 This project runs on Node 20 and uses corepack, nvm, and tsx.
@@ -51,6 +50,16 @@ pnpm build
 
 # start the project with node
 pnpm start
+```
+
+## Running tests
+I'm using vitest to provide testing
+```bash
+# to run and exit
+pnpm test run
+
+# to watch for changes
+pnpm test
 ```
 
 ## Sending a request
