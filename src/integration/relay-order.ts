@@ -21,6 +21,10 @@ export async function relayOrder(
     const { id } = adapter.fromPayload(externalResponse);
     externalId = id;
   } catch (error) {
+    /**
+     * We might be able to accomplish this using Axios interceptors.  This
+     * would be useful if we are running out-of-band.
+     */
     if (isAxiosError(error)) {
       console.error('%s', error);
 

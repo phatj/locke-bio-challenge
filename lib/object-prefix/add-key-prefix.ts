@@ -8,6 +8,10 @@ interface AddKeyPrefix {
     obj: T,
     prefix: P
   ): {
+    /**
+     * In practice, `K` is always a string, but `T` may be instantiated by an
+     * object that has other types of keys, so we perform a test for it.
+     */
     [K in keyof T as K extends string ? `${P}${Capitalize<K>}` : never]: T[K];
   };
 }
@@ -18,6 +22,10 @@ export const addKeyPrefix: AddKeyPrefix = (obj, prefix) => {
   const entriesWithoutPrefix = entries.map((entry) => {
     const [key, value] = entry;
 
+    /**
+     * This is slightly incorrect from the type since we assume that the key is
+     * a string.
+     */
     const keyWithPrefix = prefix + toUpperFirst(key);
     return [keyWithPrefix, value];
   });

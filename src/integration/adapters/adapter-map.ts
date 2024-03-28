@@ -10,5 +10,5 @@ export const AdapterMap = Object.freeze({
 
 export type AdapterMap = typeof AdapterMap;
 
-// we unfortunately have to duplicate keys here
+// we, unfortunately, have to duplicate keys here to maintain types
 export const AdapterTuple = ['careplus', 'healthmart', 'quickcare'] as const;

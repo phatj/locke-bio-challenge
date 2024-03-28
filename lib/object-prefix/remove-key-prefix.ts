@@ -8,9 +8,17 @@ interface RemoveKeyPrefix {
     obj: T,
     prefix: P
   ): {
-    [K in keyof T as K extends `${P}${infer R}`
-      ? Uncapitalize<R>
-      : never]: T[K];
+    /**
+     * This is an interesting conditional type.  In order:
+     *  - Map over the keys of the obj `T`.
+     *  - For each key `K`, check if the key starts with the prefix `P`, and
+     *    capture the remainder of the key as `R`
+     *  - If the key matches this pattern, uncapitalize `R`; otherwise,
+     *    use the key `K`.
+     *  - `T[K]` is a standard indexed access type that gives us the type value
+     *    that the key `K` references in `T`
+     */
+    [K in keyof T as K extends `${P}${infer R}` ? Uncapitalize<R> : K]: T[K];
   };
 }
 
